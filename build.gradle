@@ -7,6 +7,7 @@ sourceCompatibility = '1.7'
 targetCompatibility = '1.7'
 
 version = '1.0'
+
 jar {
     manifest {
         attributes 'Implementation-Title': 'Gradle Quickstart', 'Implementation-Version': version
@@ -16,12 +17,54 @@ jar {
 repositories {
     mavenCentral()
 }
+// For provided jars
+configurations {
+	provided
+}
 
 dependencies {
     compile group: 'commons-collections', name: 'commons-collections', version: '3.2'
+	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.5'
+	runtime group: 'org.slf4j', name: 'jcl-over-slf4j', version: '1.7.5'
+	compile group: 'ch.qos.logback', name: 'logback-core', version: '1.0.13'
+	compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.0.13'
     compile group: 'org.springframework', name: 'spring-core', version: '3.1.4.RELEASE'
+	compile group: 'org.springframework', name: 'spring-aop', version: '3.1.4.RELEASE'
+	compile group: 'org.springframework', name: 'spring-beans', version: '3.1.4.RELEASE'
+	compile group: 'org.springframework', name: 'spring-web', version: '3.1.4.RELEASE'
+	compile group: 'org.springframework', name: 'spring-webmvc', version: '3.1.4.RELEASE'
+	compile group: 'org.springmodules', name: 'spring-modules-jakarta-commons', version: '0.8'
+	compile group: 'org.freemarker', name: 'freemarker', version: '2.3.17'
+	compile group: 'org.hibernate', name: 'hibernate-validator', version: '4.3.0.Final'
+	compile group: 'org.apache.tomcat', name: 'servlet-api', version: '6.0.33'
+
+	// provided 'org.apache.tomcat:servlet-api:6.0.33'
+
     testCompile group: 'junit', name: 'junit', version: '4.+'
-    
+}
+
+jettyRun {
+	httpPort = 9000
+	reload = 'automatic'
+	scanIntervalSeconds = 2
+	/* Change context path (base url). otherwise defaults to name of project */
+	contextPath = ''
+}
+
+/* Multi-users environment */
+// -Pprofile=develop
+final String DEFAULT_PROFILE = 'develop'
+allprojects {
+	if (!project.hasProperty('profile') || !profile) {
+		ext.profile = DEFAULT_PROFILE
+	}
+	sourceSets {
+		main {
+			resources {
+				srcDir "config/${profile}/resources"
+			}
+		}
+	}
 }
 
 test {

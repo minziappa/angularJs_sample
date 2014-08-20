@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+
+	<head>
+	
+		<style>
+		</style>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+		<script src="angular/angular.min.js"></script>
+		<script src="angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+	</head>
+
+	<body>
+
+		<div ng-app="myApp">
+		    <div ng-controller="MainCtrl">
+		         {{ text }}
+		    </div>
+		</div>
+
+
+		<button ng-click="count = count + 1" ng-init="count=0">
+		  Increment
+		</button>
+		count: {{count}}
+
+
+	  <script>
+		  var myApp = angular.module('myApp', []);
+
+		  myApp.controller('MainCtrl', ['$scope', function ($scope) {
+		      $scope.text = 'Hello, Angular fanatic.';
+		  }]);
+
+	  </script>
+	</body>
+
+</html>

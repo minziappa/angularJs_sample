@@ -127,7 +127,7 @@ public abstract class AbstractBaseController {
             String value = request.getParameter(name);
             logger.error("Exception:" + i + " parameter is name=" + name + ", value=" + value);
         }
-        
+
         logger.error("Exception's trace:", e);
 
 		response.setContentLength(0);

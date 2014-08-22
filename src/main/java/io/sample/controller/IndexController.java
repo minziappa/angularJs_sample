@@ -2,8 +2,10 @@ package io.sample.controller;
 
 import java.util.Map;
 
+import io.sample.bean.para.UploadFilePara;
 import io.sample.bean.para.ValidatorPara;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -59,6 +61,23 @@ public class IndexController extends AbstractBaseController {
     	model.addAttribute("test", "@@@ Hello World! @@@");
 
 		return "index";
+	}
+
+    @RequestMapping(value = {"ajaxUploadFile"}, method=RequestMethod.POST)
+	public void ajaxUploadFile(@Valid UploadFilePara file, BindingResult bindingResult, 
+			HttpServletResponse response, ModelMap model) throws Exception {
+
+    	logger.info("file name >>>>>>> " + file.getUpload().getOriginalFilename());
+
+    	model.addAttribute("test", "@@@ Hello World! @@@");
+
+//		response.setContentType("application/json; charset=UTF-8");
+//		response.setHeader("Cache-Control", "no-cache");
+//		PrintWriter pw = response.getWriter();
+//		pw.write("{\"aaa\":\"ddd\"}");
+//		pw.flush();
+//		pw.close();
+
 	}
 
     /**

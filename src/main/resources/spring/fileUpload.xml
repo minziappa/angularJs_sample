@@ -9,15 +9,15 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
-
-	<!-- Application Properties -->
-	<context:property-placeholder location="classpath:application.properties" />
-	<!-- Set the base package -->
-	<context:component-scan base-package="io.sample" />
-
-	<import resource="classpath:spring/common.xml"/>
-	<import resource="classpath:spring/fileUpload.xml"/>
-	<import resource="classpath:spring/service.xml"/>
-
+    <!-- Configure the multipart resolver -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="10000000000"/>
+        <property name="uploadTempDir" ref="uploadDirResource" />
+    </bean>
+    <bean id="uploadDirResource" class="org.springframework.core.io.FileSystemResource">
+        <constructor-arg>
+        <value>/tmp</value>
+        </constructor-arg>
+    </bean>
 </beans>

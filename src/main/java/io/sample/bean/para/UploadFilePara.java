@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class UploadFilePara {
 
-	@NotNull(message = "photos")
+	@NotNull(message = "upload")
 	private MultipartFile upload;
 
 	public MultipartFile getUpload() {

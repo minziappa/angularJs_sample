@@ -1,5 +1,6 @@
 package io.sample.controller;
 
+import java.io.PrintWriter;
 import java.util.Map;
 
 import io.sample.bean.para.UploadFilePara;
@@ -57,7 +58,6 @@ public class IndexController extends AbstractBaseController {
     @RequestMapping(value = {"/", "", "index.do"}, method=RequestMethod.GET)
 	public String index(HttpSession session, ModelMap model) throws Exception {
 
-    	logger.info("index >>>>>>> ");
     	model.addAttribute("test", "@@@ Hello World! @@@");
 
 		return "index";
@@ -71,13 +71,12 @@ public class IndexController extends AbstractBaseController {
 
     	model.addAttribute("test", "@@@ Hello World! @@@");
 
-//		response.setContentType("application/json; charset=UTF-8");
-//		response.setHeader("Cache-Control", "no-cache");
-//		PrintWriter pw = response.getWriter();
-//		pw.write("{\"aaa\":\"ddd\"}");
-//		pw.flush();
-//		pw.close();
-
+		response.setContentType("application/json; charset=UTF-8");
+		response.setHeader("Cache-Control", "no-cache");
+		PrintWriter pw = response.getWriter();
+		pw.write("{\"aaa\":\"ddd\"}");
+		pw.flush();
+		pw.close();
 	}
 
     /**

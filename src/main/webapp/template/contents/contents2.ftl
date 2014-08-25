@@ -7,6 +7,9 @@
 
       /* Create a FormData instance */
       var formData = new FormData();
+      
+      var file = photo.files[0];
+
       /* Add the file */ 
       formData.append("upload", file.files[0]);
 

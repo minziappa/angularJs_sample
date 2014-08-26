@@ -11,8 +11,9 @@
 
 	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
 
-	<!-- Application Properties -->
+	<!-- Application Properties	 -->
 	<context:property-placeholder location="classpath:application.properties" />
+
 	<!-- Set the base package -->
 	<context:component-scan base-package="io.sample" />
 
